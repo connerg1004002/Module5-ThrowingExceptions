@@ -4,6 +4,7 @@
       string username;
       string password;
 
+      //Ask for username and password
       Console.Write("Enter username\n>>");
       username = Console.ReadLine() ?? "";
 
@@ -11,6 +12,7 @@
       password = Console.ReadLine() ?? "";
 
 
+      //Make sure username is at least 5 characters and contains a capital letter
       if (username.ToLower() == username)
         throw new InvalidUsernameException("Username needs at least one capital letter");
 
@@ -18,7 +20,9 @@
         throw new InvalidUsernameException("Username needs at least five characters");
 
 
-      if (!ContainsSpecialLetter(password))
+
+      //Make sure password has a special character and is at least 8 characters
+      if (!ContainsSpecialCharacter(password))
         throw new InvalidPasswordException("Password needs at least one special character");
 
       if (password.Length < 8)
@@ -34,7 +38,8 @@
     }
   }
 
-  static bool ContainsSpecialLetter(string str) {
+  //Returns if string contains any special characters
+  static bool ContainsSpecialCharacter(string str) {
     return str.Any(ch => !char.IsLetterOrDigit(ch));
   }
 }
